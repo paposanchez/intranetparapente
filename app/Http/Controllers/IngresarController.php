@@ -23,7 +23,7 @@ class IngresarController extends Controller
             'local'         => 'required',
             'partime'       => 'required_without_all'
         ],[
-            'rut.exist'=> 'Rut no Encontrado'
+            'rut.requ'=> 'Rut no Encontrado'
         ]);
 
         dd($validatedData);

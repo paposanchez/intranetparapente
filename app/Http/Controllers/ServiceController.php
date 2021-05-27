@@ -6,7 +6,8 @@ use App\Models\location as ModelsLocation;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Location;
+use Illuminate\Support\Facades\Auth;
+
 
 class ServiceController extends Controller
 {
@@ -28,9 +29,10 @@ class ServiceController extends Controller
      */
     public function create()
     { 
+        $User = User::role('admin')->get(); 
         $park = ModelsLocation::all();
         $users = User::all();
-        return view('service.create',compact('park','users'));
+        return view('service.create',compact('park','users', 'User'));
     }
 
     /**
@@ -49,6 +51,7 @@ class ServiceController extends Controller
         $servicio->link          = $request->link;
         $servicio->user_id       = $request->user;
         $servicio->sector        = $request->sector;
+        $servicio->difunto       = $request->fallecido;
         $servicio->save();
 
         return redirect('servicio');
@@ -71,9 +74,13 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Service $service,$id)
     {
-        //
+        $this->authorize('edit service');
+        $users = User::all();
+        $service = Service::find($id);
+        $park = ModelsLocation::all();
+        return view('service.edit', compact('service','users','park'));
     }
 
     /**
@@ -97,5 +104,21 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         //
+    }
+
+    public function porusuario( User $user)
+    {
+        $this->authorize('view porusuario');
+        $ticket = Service::where('user_id', Auth::user()->id)->paginate(10);
+        return view('service.user', compact('ticket'));
+    }
+
+    public function marcarsi(Request $request,$id)
+    {
+        $marcar = Service::find($id);
+        $marcar->estado = "Realizado";
+        $marcar->save();
+        return redirect('porusuario');
+
     }
 }

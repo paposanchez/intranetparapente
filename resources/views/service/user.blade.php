@@ -14,19 +14,13 @@
 @endif
     <div class="card-header">
       <h3 class="card-title">Location</h3>
-            <div class="col col-xs-6 text-right">
-                <a class="btn btn-primary btn-sm" href="{{ url("servicio/create") }}">
-                <i class="fas fa-folder">
-                </i>
-                Crear Servicio
-                </a>
-      </div>
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
           <i class="fas fa-minus"></i></button>
         <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
           <i class="fas fa-times"></i></button>
       </div>
+      <p> Recuerda que solo puedes realizar un servicio a la vez y se habilita a 30 minutos del servicio correspondiente</p>
     </div>
     <div class="card-body p-0">
       <table class="table table-striped table-bordered table-list " id="departamento">
@@ -50,12 +44,15 @@
                 <th>
                    Deudo Gestor
                 </th>
+                <th>
+                  camarografo
+               </th>
                   <th>
                     Acciones
                  </th>
               </tr>
           </thead>
-          @foreach ($serv as $table)
+          @foreach ($ticket as $table)
           <tbody>
               <tr>
                   <td>
@@ -73,7 +70,7 @@
                     modulo="-"
                     acceso="Recoleta"
                     hora="{{ Carbon\Carbon::parse($table->hora)->format('H:m') }}"
-                    nombreparque="Parque del Recuerdo Am&eacute;rico Vespucio">
+                    nombreparque="{{$table->parque->name}}">
                     {{ $table->difunto }}                                              </a>
                   </td>
                   <td>
@@ -91,17 +88,14 @@
                   <td>
                     {{ $table->user->name }}
                   </td>
+                  
                   <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="{{ route('servicio.edit', $table->id) }}">
-                          <i class="fas fa-pencil-alt">
-                          </i>
-                          Editar
-                      </a>
-                      <a class="btn btn-danger btn-sm" href="#">
-                          <i class="fas fa-trash">
-                          </i>
-                          Borrar
-                      </a>
+                    <a class="btn btn-success btn-sm" href="{{route('servicio.marcarsi', array($table->id))}}">
+                      <i class="fas fa-thumbtack">
+                      </i>
+                      realizar
+                  </a>
+                  
                   </td>
               </tr>
 

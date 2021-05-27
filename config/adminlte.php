@@ -10,8 +10,8 @@ return [
     | Here you can change the default title of your admin panel.
     |
     | For detailed instructions you can look the title section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
-    |
+    |   |https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
+  
     */
 
     'title' => 'Parapente ERP',
@@ -240,6 +240,7 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
+            'can'         => 'location.index'
         ],
         [
             'text' => 'Empleados',

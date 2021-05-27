@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Assistance extends Migration
+class CreateServiciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,24 @@ class Assistance extends Migration
      */
     public function up()
     {
-        Schema::create('assistence', function (Blueprint $table) {
+        Schema::create('servicios', function (Blueprint $table) {
             $table->id();
-            $table->datetime('hora');
-            $table->string('sector');
-            $table->string('ubicacion');
-            $table->string('link');
+            $table->date('fecha');
+            $table->time('hora');
+            $table->string('clave');
             $table->string('difunto');
-            $table->string('deudogestor');
-            $table->string('estado');  
+            $table->string('link');
             $table->unsignedBigInteger('park');
             $table->foreign('park')->references('id')->on('locations');
+            $table->unsignedBigInteger('diacono');
+            $table->foreign('diacono')->references('id')->on('diaconos');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('tservicio');
+            $table->string('deudogestor');
+            $table->string('fonogestor');
+            $table->string('correogestor');
+            $table->string('estado');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -38,6 +43,6 @@ class Assistance extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('servicios');
     }
 }

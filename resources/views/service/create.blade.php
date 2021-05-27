@@ -1,6 +1,6 @@
 
 @extends('adminlte::page')
-@section('title', 'Crear Cuerpo')
+@section('title', 'Crear Servicio')
 
 @section('content')
 <div class="col-md-6">
@@ -30,7 +30,7 @@
   <label for="cuerpo">Camarografo</label>
   <select class="form-control" id="user" name="user">
       <option>Seleccione Empleado</option>
-      @foreach($users as $category)
+      @foreach($User as $category)
       <option value="{{ $category->id}}">{{$category->name}}</option>
       @endforeach
   </select>
@@ -43,6 +43,10 @@
       <option value="{{ $select->id}}">{{$select->name}}</option>
       @endforeach
   </select>
+  <div class="form-group">
+    <label for="cuerpo">Fallecido</label>
+    <input type="text" class="form-control" id="ubicacion"  placeholder="Ingresa Nombre Difunto" name="difunto">
+</div>
   <div class="form-group">
     <label for="cuerpo">Ubicacion</label>
     <input type="text" class="form-control" id="ubicacion"  placeholder="Ingresa Ubicacion" name="ubicacion">
