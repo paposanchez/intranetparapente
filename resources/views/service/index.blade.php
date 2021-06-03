@@ -103,6 +103,9 @@
                           Borrar
                       </a>
                   </td>
+                  <td>
+                    <i id="cast" class="fab fa-chromecast"></i>
+                  </td>
               </tr>
 
           </tbody>
@@ -141,5 +144,20 @@
 @endsection
 @section('js')
 <script src="{{ asset('js/abituario.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/castjs/4.1.2/cast.min.js"></script>
+
+<script>
+  // Create new Castjs instance
+const cjs = new Castjs();
+
+// Wait for user interaction
+$('#cast').on('click', function() {
+    // Check if casting is available
+    if (cjs.available) {
+        // Initiate new cast session
+        cjs.cast('https://youtu.be/MZeZFqy8DVY');
+    }
+});
+</script>
 @stop
 

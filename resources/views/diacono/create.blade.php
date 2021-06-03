@@ -1,5 +1,5 @@
 
-@extends('adminlte::page')
+@extends('layouts.parque.index')
 @section('title', 'Crear Diacono')
 
 @section('content')
@@ -45,6 +45,4 @@
 </div>
 </div>
 </div>
-
-
 @endsection

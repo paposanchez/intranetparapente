@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+route::get('/servicios/{id}/mapa',  [App\Http\Controllers\ServiciosController::class,'sector']);

@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Servicios extends Model
 {
-    use HasFactory;
+    public function user ()
+    {
+        return $this->hasone(User::class,'id','user_id');
+    }
+
+    public function parque ()
+    {
+        return $this->hasone(Location::class,'id','park');
+    }
 }

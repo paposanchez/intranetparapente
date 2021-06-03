@@ -25,6 +25,10 @@ Route::get('parque', function () {
     return view('layouts/parque/index');
 });
 
+Route::get('muestra', function () {
+    return view('servicios.show');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -52,7 +56,9 @@ Route::get('servicios/create',     [App\Http\Controllers\ServiciosController::cl
 Route::post('servicios',           [App\Http\Controllers\ServiciosController::class,'store'])->name('servicios.store');
 Route::get('servicios/{id}/edit',  [App\Http\Controllers\ServiciosController::class,'edit'])->name('servicios.edit');
 Route::put('servicios/{id}',       [App\Http\Controllers\ServiciosController::class,'update'])->name('servicios.update');
-Route::post('ingresar',           [App\Http\Controllers\IngresarController::class,'ingreso'])->name('employee.ingreso');
+Route::get('servicios/{id}',       [App\Http\Controllers\ServiciosController::class,'show'])->name('servicios.show');
+Route::post('ingresar',            [App\Http\Controllers\IngresarController::class,'ingreso'])->name('employee.ingreso');
+Route::post('/sector',             [App\Http\Controllers\ServiciosController::class, 'sector']);
 
 Route::get('servicio',            [App\Http\Controllers\ServiceController::class,'index'])->name('servicio.index');
 Route::get('servicio/create',     [App\Http\Controllers\ServiceController::class,'create'])->name('servicio.createc');
@@ -61,6 +67,7 @@ Route::post('servicio',           [App\Http\Controllers\ServiceController::class
 Route::put('servicio',            [App\Http\Controllers\ServiceController::class,'update'])->name('servicio.update');
 Route::get('porusuario',          [App\Http\Controllers\ServiceController::class,'porusuario'])->name('servicio.porusuario');
 Route::get('porusuario/{id}',     [App\Http\Controllers\ServiceController::class,'marcarsi'])->name('servicio.marcarsi');
+
 
 Route::resource('users',           App\Http\Controllers\UserController::class);
 Route::resource('roles',            App\Http\Controllers\RoleController::class);

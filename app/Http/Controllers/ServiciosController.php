@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\diaconos;
 use App\Models\location;
+use App\Models\Mapa;
 use App\Models\Servicios;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class ServiciosController extends Controller
     {
         $diacono = diaconos::all();
         $parque = location::all();
-        return view('servicios.create',compact('diacono'));
+        return view('servicios.create',compact('diacono', 'parque'));
     }
 
     /**
@@ -40,7 +41,20 @@ class ServiciosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $servicio = new Servicios ();
+        $servicio->hora          = $request->hora;
+        $servicio->fecha         =$request->fecha;
+        $servicio->deudogestor   = $request->deudogestor;
+        $servicio->fonogestor   = $request->fonogestor;
+        $servicio->correogestor  = $request->correogestor;
+        $servicio->park          = $request->parque;
+        $servicio->user_id       ="2";
+        $servicio->difunto       = $request->difunto;
+        $servicio->streaming    = $request->streaming;
+        $servicio->diacono      = $request->diacono;
+        $servicio->save();
+        return redirect('servicios');
     }
 
     /**
@@ -49,9 +63,10 @@ class ServiciosController extends Controller
      * @param  \App\Models\Servicios  $servicios
      * @return \Illuminate\Http\Response
      */
-    public function show(Servicios $servicios)
+    public function show(Servicios $servicios,$id)
     {
-        //
+        $servicios = Servicios::find($id);
+        return view('servicios.show',compact('servicios'));
     }
 
     /**
@@ -87,4 +102,15 @@ class ServiciosController extends Controller
     {
         //
     }
+
+    public function sector ( $id)
+    {
+     $mapa = Mapa::where('id_parque', $id)->get();
+
+     return response()->json(array('success'=>true,
+     'categorias'      =>  $mapa,
+),200);
+    }
+        
+    
 }
