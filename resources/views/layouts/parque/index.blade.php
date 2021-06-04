@@ -7,6 +7,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src='main.js'></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.js"
+  integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+  crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-100">
     <nav class="bg-gray-800">
@@ -157,6 +161,6 @@
     </div>
 </body>
 </html>
-
+@yield('js')
         
         
