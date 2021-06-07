@@ -17,9 +17,11 @@ class CreateServiciosTable extends Migration
             $table->id();
             $table->date('fecha');
             $table->time('hora');
+            $table->date('fechanac');
             $table->string('clave');
-            $table->string('difunto');
-            $table->string('link');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('youtube');
             $table->unsignedBigInteger('park');
             $table->foreign('park')->references('id')->on('locations');
             $table->unsignedBigInteger('diacono');
@@ -27,7 +29,7 @@ class CreateServiciosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('tservicio');
-            $table->string('deudogestor');
+            $table->string('nombregestor');
             $table->string('fonogestor');
             $table->string('correogestor');
             $table->string('estado');

@@ -1,4 +1,4 @@
-@extends('layouts.parque.index')
+@extends('layouts.paratheme.index')
 @section('title', 'Servicios')
 
 @section('content')
@@ -12,7 +12,13 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif  
+<div class="h-20 flex flex-wrap content-start">
+    <button class="bg-blue-600 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
+    <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
+    <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
+
+</div>
   <table class="min-w-full table-auto">
     <thead class="justify-between">
       <tr class="bg-gray-800">
@@ -34,7 +40,7 @@
         </th>
 
         <th class="px-16 py-2">
-          <span class="text-gray-300">Status</span>
+          <span class="text-gray-300">Acciones</span>
         </th>
       </tr>
     </thead>
@@ -43,13 +49,13 @@
         
       <tr class="bg-white border-4 border-gray-200">
         <td class="px-16 py-2 flex flex-row items-center">
-            {{ $lista->fecha }} {{ $lista->hora }}
+             {{ Carbon\Carbon::parse($lista->hora)->format('d-m') }}::{{ Carbon\Carbon::parse($lista->hora)->format('H:m') }}
         </td>
         <td>
           <span class="text-center ml-2 font-semibold">{{ $lista->difunto }}</span>
         </td>
         <td class="px-16 py-2">
-          <a href="{{ route('servicios.show', $lista->id) }}"><button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
+          <a href="{{ route('servicios.show', $lista->id) }}"><button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500 hover:text-white ">
             Servicio
           </button></a>
         </td>
@@ -60,22 +66,25 @@
           <span>{{$lista->deudogestor}}</span>
         </td>
 
-        <td class="px-16 py-2">
-          <span class="text-green-500">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h5 "
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#2c3e50"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" />
-              <path d="M5 12l5 5l10 -10" />
-            </svg>
-          </span>
+        <td class="py-3 px-6 text-center">
+            <div class="flex item-center justify-center">
+                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                </div>
+                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                </div>
+                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </div>
+            </div>
         </td>
       </tr>
       
@@ -85,25 +94,8 @@
     @endforeach
   </table>
 </div>
-
-<div x-show="show" tabindex="0" class="z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed">
-    <div  @click.away="show = false" class="z-50 relative p-3 mx-auto my-0 max-w-full" style="width: 600px;">
-        <div class="bg-white rounded shadow-lg border flex flex-col overflow-hidden">
-            <button @click={show=false} class="fill-current h-6 w-6 absolute right-0 top-0 m-6 font-3xl font-bold">&times;</button>
-            <div class="px-6 py-3 text-xl border-b font-bold">Title of the modal</div>
-            <div class="p-6 flex-grow">
-                <p>You are watching this text in tailwind css model with alpine JS.</p>
-            </div>
-            <div class="px-6 py-3 border-t">
-                <div class="flex justify-end">
-                    <button @click={show=false} type="button" class="bg-gray-700 text-gray-100 rounded px-4 py-2 mr-1">Close</Button>
-                    <button type="button" class="bg-blue-600 text-gray-200 rounded px-4 py-2">Saves Changes</Button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-black opacity-50"></div>
-</div>
-</div>
 @endsection
 
+@section('js')
+
+@stop

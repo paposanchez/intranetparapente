@@ -26,7 +26,7 @@ Route::get('parque', function () {
 });
 
 Route::get('muestra', function () {
-    return view('servicios.show');
+    return view('layouts/demo');
 });
 
 Auth::routes();

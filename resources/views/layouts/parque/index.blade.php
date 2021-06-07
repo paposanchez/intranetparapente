@@ -35,7 +35,7 @@
                 </div>
               </div>
             </div>
-            <div class="hidden md:block">
+           <div class="hidden md:block">
               <div class="ml-4 flex items-center md:ml-6">
                 <button class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span class="sr-only">View notifications</span>
@@ -143,7 +143,7 @@
       </nav>
     
       <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 class="text-3xl font-bold text-gray-900">
             @yield('title')
           </h1>

@@ -39,8 +39,8 @@ class DiaconosController extends Controller
         $validatedData = $request->validate([
             'nombre'         => 'required|max:255',
             'apellidos'      => 'required',
-            'fono'           => 'required',
-            'correo'          => 'required'
+            'fono'           => 'required|string|max:12|min:9',
+            'correo'          => 'required|email|max:255'
         ]);
         $diacono = new diaconos ();
         $diacono->nombre        = $request->nombre;
@@ -87,8 +87,8 @@ class DiaconosController extends Controller
         $validatedData = $request->validate([
             'nombre'         => 'required|max:255',
             'apellidos'      => 'required',
-            'fono'           => 'required',
-            'correo'          => 'required'
+            'fono'           => 'required|string|max:12|min:9',
+            'correo'          => 'required|email|max:255'
         ]);
         $diacono = diaconos::find($id);
         $diacono->nombre        = $request->nombre;

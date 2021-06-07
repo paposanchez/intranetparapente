@@ -1,4 +1,4 @@
-@extends('layouts.parque.index')
+@extends('layouts.demo')
 @section('title', 'Servicios :: Detalle')
 
 @section('content')

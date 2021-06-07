@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
-
+use DB;
+use Hash;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -19,11 +21,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $data = User::orderBy('id','DESC')->paginate(5);
+        return view('users.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
         
-        $users = User::all();
-        return view('users.index')->with('users', $users);
     }
 
     /**
@@ -33,8 +36,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::get();
-        return view('users.create', ['roles'=>$roles]);
+        $roles = Role::pluck('name','name')->all();
+        return view('users.create',compact('roles'));
     }
 
     /**
@@ -45,27 +48,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //Validate name, email and password fields
         $this->validate($request, [
-            'name'=>'required|max:120',
-            'email'=>'required|email|unique:users',
-            'password'=>'required|min:6|confirmed'
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
         ]);
-        $user = User::create($request->only('email', 'name', 'password')); //Retrieving only the email and password data
-
-        $roles = $request['roles']; //Retrieving the roles field
-        //Checking if a role was selected
-        if (isset($roles)) {
-
-            foreach ($roles as $role) {
-                $role_r = Role::where('id', '=', $role)->firstOrFail();
-                $user->assignRole($role_r); //Assigning role to user
-            }
-        }
-        //Redirect to the users.index view and display message
+    
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+    
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+    
         return redirect()->route('users.index')
-            ->with('flash_message',
-                'User successfully added.');
+                        ->with('success','User created successfully');
     }
 
     /**
