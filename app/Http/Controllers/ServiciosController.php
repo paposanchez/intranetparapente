@@ -44,15 +44,18 @@ class ServiciosController extends Controller
         
         $servicio = new Servicios ();
         $servicio->hora          = $request->hora;
-        $servicio->fecha         =$request->fecha;
-        $servicio->deudogestor   = $request->deudogestor;
-        $servicio->fonogestor   = $request->fonogestor;
+        $servicio->fecha         = $request->fecha;
+        $servicio->fechanac      = $request->fechanac;
+        $servicio->nombre        = $request->nombre;
+        $servicio->apellido      = $request->apellido;
+        $servicio->nombregestor  = $request->nombregestor;
+        $servicio->fonogestor    = $request->fonogestor;
         $servicio->correogestor  = $request->correogestor;
-        $servicio->park          = $request->parque;
-        $servicio->user_id       ="2";
-        $servicio->difunto       = $request->difunto;
+        $servicio->establecimiento = $request->parque;
+        $servicio->user_id       ="1";
         $servicio->streaming    = $request->streaming;
         $servicio->diacono      = $request->diacono;
+        $servicio->estado      = "ingresado";
         $servicio->save();
         return redirect('servicios');
     }
@@ -75,9 +78,11 @@ class ServiciosController extends Controller
      * @param  \App\Models\Servicios  $servicios
      * @return \Illuminate\Http\Response
      */
-    public function edit(Servicios $servicios)
+    public function edit(Servicios $servicios, $id)
     {
-        //
+        $locacion = location::all();
+        $servicios = Servicios::find($id);
+        return view('servicios.edit', compact('servicios', 'locacion'));
     }
 
     /**

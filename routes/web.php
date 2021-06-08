@@ -68,6 +68,9 @@ Route::put('servicio',            [App\Http\Controllers\ServiceController::class
 Route::get('porusuario',          [App\Http\Controllers\ServiceController::class,'porusuario'])->name('servicio.porusuario');
 Route::get('porusuario/{id}',     [App\Http\Controllers\ServiceController::class,'marcarsi'])->name('servicio.marcarsi');
 
+Route::get('streaming',              [App\Http\Controllers\StreamingController::class,'index'])->name('streaming.index');
+Route::get('streaming/create/{id}',  [App\Http\Controllers\StreamingController::class,'create'])->name('streaming.create');
+Route::post('streaming',        [App\Http\Controllers\StreamingController::class,'store'])->name('streaming.store');
 
 Route::resource('users',           App\Http\Controllers\UserController::class);
 Route::resource('roles',            App\Http\Controllers\RoleController::class);

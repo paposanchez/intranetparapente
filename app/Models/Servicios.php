@@ -14,6 +14,11 @@ class Servicios extends Model
 
     public function parque ()
     {
-        return $this->hasone(Location::class,'id','park');
+        return $this->hasone(Location::class,'id','establecimiento');
+    }
+
+    public function streaming ()
+    {
+        return $this->hasone(Streaming::class,'id','servicio_id');
     }
 }

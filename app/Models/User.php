@@ -46,4 +46,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Service::class,'id','user_id');
     }
+
+    
 }

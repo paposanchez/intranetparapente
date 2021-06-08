@@ -14,7 +14,7 @@ class DiaconosController extends Controller
      */
     public function index()
     {  
-        $this->authorize('lista diacono');
+        $this->authorize('listar diacono');
         $diacono = diaconos::latest()->paginate(5);
         return view('diacono.index', compact('diacono'));
     }
@@ -26,7 +26,7 @@ class DiaconosController extends Controller
      */
     public function create()
     {
-        $this->authorize('create diacono');
+        $this->authorize('crear diacono');
         return view('diacono.create');
     }
 
@@ -38,7 +38,7 @@ class DiaconosController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('store diacono');
+        $this->authorize('crear diacono');
         $validatedData = $request->validate([
             'nombre'         => 'required|max:255',
             'apellidos'      => 'required',

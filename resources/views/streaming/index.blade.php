@@ -1,5 +1,5 @@
 @extends('layouts.paratheme.index')
-@section('title', 'Servicios')
+@section('title', 'Streaming')
 
 @section('content')
 <div class="card">
@@ -23,7 +23,7 @@
     <thead class="justify-between">
       <tr class="bg-gray-800">
         <th class="px-16 py-2">
-          <span class="text-gray-300">Fecha / Hora</span>
+          <span class="text-gray-300">Fecha</span>
         </th>
         <th class="px-30 py-2">
             <span class="text-gray-300">Nombre DIfunto</span>
@@ -32,11 +32,11 @@
           <span class="text-gray-300">Perfil</span>
         </th>
         <th class="px-16 py-2">
-          <span class="text-gray-300">Sector</span>
+          <span class="text-gray-300">Hora</span>
         </th>
 
         <th class="px-30 py-2">
-          <span class="text-gray-300">Deudo Gestor</span>
+          <span class="text-gray-300">Asignado</span>
         </th>
 
         <th class="px-16 py-2">
@@ -44,12 +44,12 @@
         </th>
       </tr>
     </thead>
-    @foreach ($servi as $lista)
+    @foreach ($servicios as $lista)
     <tbody class="bg-gray-200">
         
       <tr class="bg-white border-4 border-gray-200">
         <td class="px-16 py-2 flex flex-row items-center">
-             {{ Carbon\Carbon::parse($lista->fecha)->format('d-m-Y') }}::{{ Carbon\Carbon::parse($lista->hora)->format('H:m') }}
+             <p class="text-red-400 font-semibold mt-2 text-1xl py-2"> {{ Carbon\Carbon::parse($lista->fecha)->format('d-m-y ') }}</p>   
         </td>
         <td>
           <span class="text-center ml-2 font-semibold">{{ $lista->nombre }} {{ $lista->apellido }}</span>
@@ -60,10 +60,10 @@
           </button></a>
         </td>
         <td class="px-16 py-2">
-          <span>05/06/2020</span>
+          <span>{{ Carbon\Carbon::parse($lista->fecha)->format('h:i ') }}</span>
         </td>
         <td class="px-30 py-3">
-          <span>{{$lista->nombregestor}}</span>
+          <span>{{$lista->user->name}}</span>
         </td>
 
         <td class="py-3 px-6 text-center">
