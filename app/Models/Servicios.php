@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+Use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Servicios extends Model
 {
+
+   
     public function user ()
     {
         return $this->hasone(User::class,'id','user_id');
@@ -16,9 +19,12 @@ class Servicios extends Model
     {
         return $this->hasone(Location::class,'id','establecimiento');
     }
-
-    public function streaming ()
+    
+    public function transmision ()
     {
-        return $this->hasone(Streaming::class,'id','servicio_id');
+        return $this->hasone(Streaming::class,'servicio_id','id');
     }
+    
+
+    use SoftDeletes;
 }

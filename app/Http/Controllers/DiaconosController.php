@@ -42,7 +42,7 @@ class DiaconosController extends Controller
         $validatedData = $request->validate([
             'nombre'         => 'required|max:255',
             'apellidos'      => 'required',
-            'fono'           => 'required|string|max:12|min:9',
+            'fono'           => 'required|string|max:12|min:8',
             'correo'          => 'required|email|max:255'
         ]);
         $diacono = new diaconos ();
@@ -74,7 +74,7 @@ class DiaconosController extends Controller
      */
     public function edit(diaconos $diaconos, $id)
     {
-        $this->authorize('edit diacono');
+        $this->authorize('editar diacono');
         $diacono = diaconos::find($id);
         return view('diacono.edit', compact('diacono'));
     }

@@ -54,11 +54,12 @@ Route::put('employee/{id}',       [App\Http\Controllers\EmployeeController::clas
 Route::get('servicios',            [App\Http\Controllers\ServiciosController::class,'index'])->name('servicios.index');
 Route::get('servicios/create',     [App\Http\Controllers\ServiciosController::class,'create'])->name('servicios.create');
 Route::post('servicios',           [App\Http\Controllers\ServiciosController::class,'store'])->name('servicios.store');
+Route::get('servicios/today',           [App\Http\Controllers\ServiciosController::class,'today'])->name('servicios.today');
 Route::get('servicios/{id}/edit',  [App\Http\Controllers\ServiciosController::class,'edit'])->name('servicios.edit');
 Route::put('servicios/{id}',       [App\Http\Controllers\ServiciosController::class,'update'])->name('servicios.update');
 Route::get('servicios/{id}',       [App\Http\Controllers\ServiciosController::class,'show'])->name('servicios.show');
 Route::post('ingresar',            [App\Http\Controllers\IngresarController::class,'ingreso'])->name('employee.ingreso');
-Route::post('/sector',             [App\Http\Controllers\ServiciosController::class, 'sector']);
+Route::post('/sector',             [App\Http\Controllers\ServiciosController::class, 'sector2']);
 
 Route::get('servicio',            [App\Http\Controllers\ServiceController::class,'index'])->name('servicio.index');
 Route::get('servicio/create',     [App\Http\Controllers\ServiceController::class,'create'])->name('servicio.createc');
@@ -69,6 +70,7 @@ Route::get('porusuario',          [App\Http\Controllers\ServiceController::class
 Route::get('porusuario/{id}',     [App\Http\Controllers\ServiceController::class,'marcarsi'])->name('servicio.marcarsi');
 
 Route::get('streaming',              [App\Http\Controllers\StreamingController::class,'index'])->name('streaming.index');
+Route::get('streaming/today',              [App\Http\Controllers\StreamingController::class,'today'])->name('streaming.day');
 Route::get('streaming/create/{id}',  [App\Http\Controllers\StreamingController::class,'create'])->name('streaming.create');
 Route::post('streaming',        [App\Http\Controllers\StreamingController::class,'store'])->name('streaming.store');
 

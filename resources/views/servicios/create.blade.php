@@ -29,19 +29,24 @@
         <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Nombre <abbr title="required">*</abbr></label>
-            <input placeholder="Company Name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="nombre">
+            <input placeholder="Company Name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="nombre"  value="{{old('nombre')}}">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Apellido <abbr title="required">*</abbr></label>
-            <input placeholder="hora" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="apellido">
+            <input placeholder="hora" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="apellido"  value="{{old('apellido')}}">
+            <p class="text-red text-xs hidden">Please fill out this field.</p>
+          </div>
+          <div class="mb-3 md:space-y-2 w-full text-xs">
+            <label class="font-semibold text-gray-600 py-2">Fecha Nacimiento <abbr title="required">*</abbr></label>
+            <input placeholder="hora" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="date" name="fechanac"  value="{{old('fechanac')}}">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
         </div>
         <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Parque <abbr title="required">*</abbr></label>
-            <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full " id="select-protect" name="parque">
+            <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full " id="_categoria" name="parque">
               <option>Seleccione Parque</option>
               @foreach($parque as $category)
               <option value="{{ $category->id}}">{{$category->name}}</option>
@@ -51,7 +56,7 @@
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Sector <abbr title="required">*</abbr></label>
-            
+            <select name="" id="_subcategoria"></select>
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
@@ -72,20 +77,25 @@
         <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Nombre Deudo Gestor <abbr title="required">*</abbr></label>
-            <input placeholder="Ingrese Nombre Deudo" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="nombregestor" id="integration_shop_name">
+            <input placeholder="Ingrese Nombre Deudo" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="nombregestor"  value="{{old('nombregestor')}}">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Contacto Deudo <abbr title="required">*</abbr></label>
-            <input placeholder="Ingrese numero de contacto" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="fonogestor" id="integration_shop_name">
+            <input placeholder="Ingrese numero de contacto" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="contactogestor"  value="{{old('contactogestor')}}">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Correo Deudo <abbr title="required">*</abbr></label>
-            <input placeholder="Ingrese numero de contacto" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="correogestor" id="integration_shop_name">
+            <input placeholder="Ingrese email" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="correogestor" value="{{old('correogestor')}}">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
         </div> 
+        <div class="mb-3 md:space-y-2 w-full text-xs">
+          <label class="font-semibold text-gray-600 py-2">Link Streaming <abbr title="required">*</abbr></label>
+          <input placeholder="Ingrese email" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="link" value="{{old('link')}}">
+          <p class="text-red text-xs hidden">Please fill out this field.</p>
+        </div>
         <div class="flex flex-col sm:flex-row items-center">
           <h2 class="font-semibold text-lg mr-auto text-blue-700">Servicios Adicionales</h2>
           <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>

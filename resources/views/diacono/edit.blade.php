@@ -15,12 +15,7 @@
         </ul>
     </div>
 @endif
-   
-        
-        
 
-
-  
 <div class="bg-white p-10 rounded-lg shadow m:w-3/4 lg:w-1/2 mx-auto">
   <form action="{{ route('diacono.update', $diacono->id ) }}" method="POST">
     @csrf @method('PUT')

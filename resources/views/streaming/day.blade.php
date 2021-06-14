@@ -1,5 +1,5 @@
 @extends('layouts.paratheme.index')
-@section('title', 'Servicios')
+@section('title', 'Streaming del Dia')
 
 @section('content')
 <div class="card">
@@ -13,7 +13,11 @@
         </ul>
     </div>
 @endif  
-<div class="h-20 flex flex-wrap content-start">
+
+  
+
+
+  <div class="h-20 flex flex-wrap content-start">
     <button class="bg-blue-600 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
     <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
     <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
@@ -23,7 +27,7 @@
     <thead class="justify-between">
       <tr class="bg-gray-800">
         <th class="px-16 py-2">
-          <span class="text-gray-300">Fecha / Hora</span>
+          <span class="text-gray-300">Fecha</span>
         </th>
         <th class="px-30 py-2">
             <span class="text-gray-300">Nombre DIfunto</span>
@@ -32,11 +36,11 @@
           <span class="text-gray-300">Perfil</span>
         </th>
         <th class="px-16 py-2">
-          <span class="text-gray-300">Sector</span>
+          <span class="text-gray-300">Hora</span>
         </th>
 
         <th class="px-30 py-2">
-          <span class="text-gray-300">Deudo Gestor</span>
+          <span class="text-gray-300">Asignado</span>
         </th>
 
         <th class="px-16 py-2">
@@ -44,40 +48,40 @@
         </th>
       </tr>
     </thead>
-    @foreach ($servi as $lista)
+    @foreach ($stream as $lista2)
     <tbody class="bg-gray-200">
         
       <tr class="bg-white border-4 border-gray-200">
         <td class="px-16 py-2 flex flex-row items-center">
-             {{ Carbon\Carbon::parse($lista->fecha)->format('d-m-Y') }}::{{ Carbon\Carbon::parse($lista->hora)->format('H:m') }}
+             <p class="text-red-400 font-semibold mt-2 text-1xl py-2"> {{ Carbon\Carbon::parse($lista2->servicio->fecha)->format('d-m-y ') }}</p>   
         </td>
         <td>
-          <span class="text-center ml-2 font-semibold">{{ $lista->nombre }} {{ $lista->apellido }}</span>
+          <span class="text-center ml-2 font-semibold">{{ $lista2->servicio->nombre }} {{ $lista2->servicio->apellido }}</span>
         </td>
         <td class="px-16 py-2">
-          <a href="{{ route('servicios.show', $lista->id) }}"><button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500 hover:text-white ">
-            Mostrar
+          <a href="{{ route('servicios.show', $lista2->id) }}"><button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500 hover:text-white ">
+            Servicio
           </button></a>
         </td>
         <td class="px-16 py-2">
-          <span>05/06/2020</span>
+          <span>{{ Carbon\Carbon::parse($lista2->servicio->hora)->format('h:i ') }}</span>
         </td>
         <td class="px-30 py-3">
-          <span>{{$lista->nombregestor}}</span>
+          <span>{{$lista2->user->name}}</span>
         </td>
 
         <td class="py-3 px-6 text-center">
             <div class="flex item-center justify-center">
-                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 invisible">
+                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
                 </div>
                 <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                    <a href="{{ route('servicios.edit', $lista->id) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                    </svg></a>
+                    </svg>
                 </div>
                 <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,13 +92,9 @@
         </td>
       </tr>
       
-      
-      
     </tbody>
     @endforeach
-  </table>
-</div>
-@endsection
+ @endsection
 
 @section('js')
 

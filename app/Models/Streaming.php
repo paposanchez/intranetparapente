@@ -9,7 +9,6 @@ class Streaming extends Model
 {
     
 
-
     public function user ()
     {
         return $this->hasone(User::class,'id','user_id');
@@ -17,6 +16,6 @@ class Streaming extends Model
 
     public function servicio ()
     {
-        return $this->hasone(Servicios::class,'id','servicios_id');
+        return $this->belongsTo(Servicios::class,'servicio_id','id');
     }
 }

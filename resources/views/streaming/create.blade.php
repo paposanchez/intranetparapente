@@ -27,7 +27,7 @@
       </select>
         <p class="text-red text-xs hidden">Please fill out this field.</p>
       </div>
-      <input type="" class="form-control" name="servicio" value="{{ $servicios->id }}">
+      <input type="" class="form-control invisible" name="servicio" value="{{ $servicios->id }}">
       <p class="text-red-400 text-sm mt-2 py-2">* todos los campos son obligatorios</p>
       <button class="block w-full bg-blue-400 p-4 text-white font-bold rounded-lg shadow hover:shadow-lg">Submit</button>
     </form>

@@ -6,6 +6,8 @@ use App\Models\Servicios;
 use App\Models\Streaming;
 use Illuminate\Http\Request;
 use App\Models\User;
+use DB;
+use Illuminate\Support\Carbon;
 
 class StreamingController extends Controller
 {
@@ -16,9 +18,15 @@ class StreamingController extends Controller
      */
     public function index()
     {
-        $servicios = Servicios::where('streaming', 1)->get();
-        $streaming = Streaming::all();
-        return view('streaming.index', compact('streaming','servicios'));
+
+        $servicios2 = DB::table('servicios')
+        ->where('streaming', '=', 1)
+        ->where('estado_streaming', '=', 0)
+        ->orderBy('fecha','DESC')
+        ->get();
+        $streaming = Streaming::orderBy('user_id', 'desc')->get();
+        
+        return view('streaming.index', compact('streaming','servicios2'));
     }
 
     /**
@@ -30,6 +38,8 @@ class StreamingController extends Controller
     {
         $User = User::whereHas("roles", function($q){ $q->where("name", "camara"); })->get(); 
         $servicios = Servicios::find($id);
+
+        
             return view('streaming.create',compact('User','servicios'));
     }
 
@@ -41,10 +51,20 @@ class StreamingController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'servicio'      => 'required|unique:streamings,servicio_id',
+            'operador'      => 'required'
+        ]);
+
         $streaming  = new Streaming();
         $streaming->servicio_id  = $request->servicio;
         $streaming->user_id      = $request->operador;
         $streaming->save();
+
+
+        $estado_streaming = Servicios::find($request->servicio);
+        $estado_streaming->estado_streaming = 1;
+        $estado_streaming->save();
         return redirect('streaming');
     }
 
@@ -92,4 +112,14 @@ class StreamingController extends Controller
     {
         //
     }
+
+    public function today()
+    {
+      $stream = Streaming::whereHas('servicio', function($q){
+          $q->where('fecha','=', Carbon::now()->format('Y-m-d'));
+      })->get();
+      return view('streaming.day', compact('stream'));
+    }
+
+    
 }

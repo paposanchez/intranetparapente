@@ -6,7 +6,11 @@
     <title>Agenda Parapente</title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
-
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0bd425aa6a.js" crossorigin="anonymous"></script>
     <!-- Tailwind -->
     <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <style>
@@ -19,7 +23,7 @@
         .active-nav-link { background: #1947ee; }
         .nav-item:hover { background: #1947ee; }
         .account-link:hover { background: #3d68ff; }
-    </style>
+    </style>   
 </head>
 <body class="bg-gray-100 font-family-karla flex">
 
@@ -39,12 +43,12 @@
                 <i class="fas fa-sticky-note mr-3"></i>
                 Servicios
             </a>
-            <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="{{route('streaming.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-align-left mr-3"></i>
                 Streaming
             </a>
             <a href="{{route('location.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-tablet-alt mr-3"></i>
+                <i class="fa-solid fa-location mr-3"></i>
                 Establecimiento
             </a>
             <a href="{{route('diacono.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">

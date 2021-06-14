@@ -65,7 +65,19 @@
                     
                     <p class="text-red text-xs hidden">Please fill out this field.</p>
                   </div>
+                  <div class="mb-3 md:space-y-2 w-full text-xs">
+                    <label class="font-semibold text-gray-600 py-2">Diacono <abbr title="required">*</abbr></label>
+                    <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full " id="select-protect" name="diacono">
+                      <option>Seleccione Diacono</option>
+                      @foreach($diacono as $category)
+                      <option value="{{ $category->id}}">{{$category->nombre}} {{$category->apellidos}}</option>
+                      <option value="{{$category->id}}" {{$servicios->diacono==$category->id ? 'selected' : ''}}>{{$category->nombre}} {{$category->apellidos}}</option>
+                      @endforeach
+                  </select>
+                    <p class="text-red text-xs hidden">Please fill out this field.</p>
+                  </div>
                 </div> 
+                
                 <div class="flex flex-col sm:flex-row items-center">
                   <h2 class="font-semibold text-lg mr-auto text-blue-700">Datos Deudo Gestor</h2>
                   <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>
