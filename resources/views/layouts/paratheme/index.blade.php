@@ -39,26 +39,26 @@
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
-            <a href="{{route('servicios.index')}}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
-                <i class="fas fa-sticky-note mr-3"></i>
+            <a href="{{route('servicios.index')}}" class="flex items-center  text-white py-4 pl-6 nav-item">
+                <i class="fas fa-concierge-bell mr-3"></i>
                 Servicios
             </a>
             <a href="{{route('streaming.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-align-left mr-3"></i>
+                <i class="fas fa-broadcast-tower mr-3"></i>
                 Streaming
             </a>
             <a href="{{route('location.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fa-solid fa-location mr-3"></i>
+                <i class="fas fa-archway mr-3"></i>
                 Establecimiento
             </a>
             <a href="{{route('diacono.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-calendar mr-3"></i>
-                Diaconos
+                <i class="fas fa-church mr-3"></i>
+                Diacono
             </a>
         </nav>
         <a href="#" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
             <i class="fas fa-arrow-circle-up mr-3"></i>
-            Upgrade to Pro!
+            Inicia sesion
         </a>
     </aside>
 
@@ -68,12 +68,11 @@
             <div class="w-1/2">@yield('title')</div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 
-                <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
-                    <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400">
+                <button @click="isOpen = !isOpen" class="realtive z-10 w-20 h-12  overflow-hidden focus:border-gray-300 focus:outline-none">
+                    {{ Auth::user()->name }} 
                 </button>
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
                     <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
                     <a href="#" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
                 </div>
@@ -96,21 +95,21 @@
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Dashboard
                 </a>
-                <a href="#" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
-                    <i class="fas fa-sticky-note mr-3"></i>
-                    Blank Page
+                <a href="{{route('servicios.index')}}" class="flex items-center  text-white py-2 pl-4 nav-item">
+                    <i class="fas fa-concierge-bell mr-3"></i>
+                    Servicios
                 </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="{{route('streaming.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-table mr-3"></i>
-                    Tables
+                    Streaming
                 </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-align-left mr-3"></i>
-                    Forms
+                <a href="{{route('location.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-archway mr-3"></i>
+                    Locaciones
                 </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-tablet-alt mr-3"></i>
-                    Tabbed Content
+                <a href="{{route('diacono.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-church mr-3"></i>
+                    Diacono
                 </a>
                 <a href="#l" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-calendar mr-3"></i>

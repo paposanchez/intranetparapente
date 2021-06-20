@@ -14,6 +14,7 @@ class LocationController extends Controller
      */
     public function index()
     {
+        $this->authorize('listar locales');
         $locate = location::latest()->paginate(5);
         return view('location.index', compact('locate'));
     }
@@ -25,7 +26,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        
+        $this->authorize('crear locales');
         return view('location.create');
     }
 
@@ -37,6 +38,7 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('crear locales');
         $locate = new location();
         $locate->name = $request->name;
         $locate->alias = $request->alias;
@@ -64,6 +66,7 @@ class LocationController extends Controller
      */
     public function edit(location $location, $id)
     {
+        $this->authorize('editar locales');
         $locate = location::find($id);
         return view('location.edit',compact('locate'));
     }
@@ -77,6 +80,7 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('editar locales');
         $location= location::find($id);
         $location->name         = $request->name;
         $location->alias        = $request->alias;

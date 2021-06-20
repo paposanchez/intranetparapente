@@ -13,36 +13,31 @@
         </ul>
     </div>
 @endif  
-<div class="h-20 flex flex-wrap content-start">
-    <button class="bg-blue-600 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
-    <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
-    <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
 
-</div>
   <table class="min-w-full table-auto">
     <thead class="justify-between">
       <tr class="bg-gray-800">
         
-        <th class="px-16 py-2"><span class="text-gray-300">Sin Asignar</span></th> </tr>
+        <th class="px-5 py-2"><span class="text-gray-300">Sin Asignar</span></th> </tr>
       <tr class="bg-gray-800">
-        <th class="px-16 py-2">
+        <th class="px-10 py-2">
           <span class="text-gray-300">Fecha</span>
         </th>
-        <th class="px-30 py-2">
+        <th class="px-5 py-2">
             <span class="text-gray-300">Nombre DIfunto</span>
           </th>
-        <th class="px-16 py-2">
+        <th class="px-5 py-2">
           <span class="text-gray-300">Perfil</span>
         </th>
-        <th class="px-16 py-2">
+        <th class="px-5 py-2">
           <span class="text-gray-300">Hora</span>
         </th>
 
-        <th class="px-30 py-2">
+        <th class="px-10 py-2">
           <span class="text-gray-300">Asignado</span>
         </th>
 
-        <th class="px-16 py-2">
+        <th class="px-5 py-2">
           <span class="text-gray-300">Acciones</span>
         </th>
       </tr>
@@ -51,21 +46,21 @@
     <tbody class="bg-gray-200">
         
       <tr class="bg-white border-4 border-gray-200">
-        <td class="px-16 py-2 flex flex-row items-center">
+        <td class="px-10 py-2 flex flex-row items-center">
              <p class="text-red-400 font-semibold mt-2 text-1xl py-2"> {{ Carbon\Carbon::parse($lista->fecha)->format('d-m-y ') }}</p>   
         </td>
         <td>
           <span class="text-center ml-2 font-semibold">{{ $lista->nombre }} {{ $lista->apellido }}</span>
         </td>
-        <td class="px-16 py-2">
+        <td class="px-5 py-2">
           <a href="{{ route('streaming.create', $lista->id) }}"><button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500 hover:text-white ">
             Asignar
           </button></a>
         </td>
-        <td class="px-16 py-2">
+        <td class="px-5 py-2">
           <span>{{ Carbon\Carbon::parse($lista->hora)->format('h:i ') }}</span>
         </td>
-        <td class="px-30 py-3">
+        <td class="px-5 py-3">
           <span></span>
         </td>
 
@@ -96,33 +91,32 @@
   </table>
 
 
-  <div class="h-20 flex flex-wrap content-start">
-    <button class="bg-blue-600 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
-    <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
-    <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
-
-</div>
-  <table class="min-w-full table-auto">
+  <div class="flex justify-center py-4">
+    <button class="flex-grow px-4 py-1 text-sm font-medium bg-white border border-r-0 cursor-pointer focus:bg-gray-500 focus:outline-none">Hoy</button>
+    <button class="flex-grow px-4 py-1 text-sm font-medium bg-gray-300 border border-r-0 cursor-pointer focus:bg-gray-500 focus:outline-none">General</button>
+    <button class="flex-grow px-4 py-1 text-sm font-medium bg-white border cursor-pointer focus:bg-gray-500 focus:outline-none">Por Usuario</button>
+  </div>
+  <table class="min-w-full table-auto sm:text-1x1">
     <thead class="justify-between">
       <tr class="bg-gray-800">
-        <th class="px-16 py-2">
+        <th class="px-10 py-2">
           <span class="text-gray-300">Fecha</span>
         </th>
-        <th class="px-30 py-2">
+        <th class="px-20 py-2">
             <span class="text-gray-300">Nombre DIfunto</span>
           </th>
-        <th class="px-16 py-2">
+        <th class="px-5 py-2">
           <span class="text-gray-300">Perfil</span>
         </th>
-        <th class="px-16 py-2">
+        <th class="px-5 py-2">
           <span class="text-gray-300">Hora</span>
         </th>
 
-        <th class="px-30 py-2">
+        <th class="px-5 py-2">
           <span class="text-gray-300">Asignado</span>
         </th>
 
-        <th class="px-16 py-2">
+        <th class="px-5 py-2">
           <span class="text-gray-300">Acciones</span>
         </th>
       </tr>
@@ -131,21 +125,21 @@
     <tbody class="bg-gray-200">
         
       <tr class="bg-white border-4 border-gray-200">
-        <td class="px-16 py-2 flex flex-row items-center">
+        <td class="px-5 py-2 flex flex-row items-center">
              <p class="text-red-400 font-semibold mt-2 text-1xl py-2"> {{ Carbon\Carbon::parse($lista2->servicio->fecha)->format('d-m-y ') }}</p>   
         </td>
         <td>
-          <span class="text-center ml-2 font-semibold">{{ $lista2->servicio->nombre }} {{ $lista2->servicio->apellido }}</span>
+          <span class="text-center ml-1 font-semibold">{{ $lista2->servicio->nombre }} {{ $lista2->servicio->apellido }}</span>
         </td>
-        <td class="px-16 py-2">
-          <a href="{{ route('servicios.show', $lista2->id) }}"><button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500 hover:text-white ">
+        <td class="px-5 py-2">
+          <a href="{{ route('servicios.show', $lista2->servicio_id) }}"><button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500 hover:text-white ">
             Servicio
           </button></a>
         </td>
-        <td class="px-16 py-2">
+        <td class="px-5 py-2">
           <span>{{ Carbon\Carbon::parse($lista2->servicio->hora)->format('h:i ') }}</span>
         </td>
-        <td class="px-30 py-3">
+        <td class="px-10 py-3">
           <span>{{$lista2->user->name}}</span>
         </td>
 

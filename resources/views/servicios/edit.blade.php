@@ -99,6 +99,11 @@
                     <p class="text-red text-xs hidden">Please fill out this field.</p>
                   </div>
                 </div> 
+                <div class="mb-3 md:space-y-2 w-full text-xs">
+                  <label class="font-semibold text-gray-600 py-2">Link Streaming <abbr title="required">*</abbr></label>
+                  <input placeholder="Ingrese link streaming" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="link" value="{{old('link')}}">
+                  <p class="text-red text-xs hidden">Please fill out this field.</p>
+                </div>
                 <div class="flex flex-col sm:flex-row items-center">
                   <h2 class="font-semibold text-lg mr-auto text-blue-700">Servicios Adicionales</h2>
                   <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>
@@ -113,6 +118,23 @@
                                             @else
                                             <label>
                                                 <input type="checkbox" name="streaming" value="1" class="form-checkbox h-5 w-5 text-gray-600"><span class="ml-2 text-gray-700"> streaming</span>
+                                                    
+                                            </label>
+                                            @endif
+                </label>
+                  <p class="text-red text-xs hidden">Please fill out this field.</p>
+                  <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>
+                </div>
+                <div class="mb-3 md:space-y-2 w-full text-xs">
+                  <label class="inline-flex items-center mt-3 space-x-4">
+                    @if($servicios->streaming == "true")
+                                            <label>
+                                                <input type="checkbox" name="coro" class="form-checkbox h-5 w-5 text-gray-600" value="{{ $servicios->streaming }}" checked><span class="ml-2 text-gray-700">streaming</span>
+                                                    
+                                            </label>
+                                            @else
+                                            <label>
+                                                <input type="checkbox" name="coro" value="1" class="form-checkbox h-5 w-5 text-gray-600"><span class="ml-2 text-gray-700"> streaming</span>
                                                     
                                             </label>
                                             @endif

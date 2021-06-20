@@ -18,14 +18,17 @@ class StreamingController extends Controller
      */
     public function index()
     {
-
+        $this->authorize('listar streaming');
         $servicios2 = DB::table('servicios')
         ->where('streaming', '=', 1)
         ->where('estado_streaming', '=', 0)
         ->orderBy('fecha','DESC')
         ->get();
-        $streaming = Streaming::orderBy('user_id', 'desc')->get();
-        
+       
+        $streaming = Streaming::whereHas('servicio', function($q){
+            $q->orderBy('hora','ASC');
+            
+        })->get();
         return view('streaming.index', compact('streaming','servicios2'));
     }
 
@@ -36,7 +39,8 @@ class StreamingController extends Controller
      */
     public function create($id)
     {
-        $User = User::whereHas("roles", function($q){ $q->where("name", "camara"); })->get(); 
+        $this->authorize('asignar streaming');
+        $User      = User::whereHas("roles", function($q){ $q->where("name", "camara"); })->get(); 
         $servicios = Servicios::find($id);
 
         
@@ -51,6 +55,7 @@ class StreamingController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('crear streaming');
         $validatedData = $request->validate([
             'servicio'      => 'required|unique:streamings,servicio_id',
             'operador'      => 'required'
@@ -115,8 +120,10 @@ class StreamingController extends Controller
 
     public function today()
     {
+        $this->authorize('today streaming');
       $stream = Streaming::whereHas('servicio', function($q){
-          $q->where('fecha','=', Carbon::now()->format('Y-m-d'));
+          $q->where('fecha','=', Carbon::now()->format('Y-m-d'))
+          ->orderBy('hora', 'asc');
       })->get();
       return view('streaming.day', compact('stream'));
     }

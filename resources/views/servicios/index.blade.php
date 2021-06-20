@@ -49,7 +49,7 @@
         
       <tr class="bg-white border-4 border-gray-200">
         <td class="px-16 py-2 flex flex-row items-center">
-             {{ Carbon\Carbon::parse($lista->fecha)->format('d-m-Y') }}::{{ Carbon\Carbon::parse($lista->hora)->format('H:m') }}
+             {{ Carbon\Carbon::parse($lista->fecha)->format('d-m') }}::{{ Carbon\Carbon::parse($lista->hora)->format('H:m') }}
         </td>
         <td>
           <span class="text-center ml-2 font-semibold">{{ $lista->nombre }} {{ $lista->apellido }}</span>

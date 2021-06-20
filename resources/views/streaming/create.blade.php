@@ -3,20 +3,22 @@
 @section('title', 'Asignar Streaming')
 
 @section('content')
-      
   <div class="bg-white p-10 rounded-lg shadow m:w-3/4 lg:w-1/2 mx-auto">
+    
     <form action="{{ route('streaming.store', $servicios->id ) }}" method="POST">
       @csrf
-      <p class="text-gray-400 font-semibold mt-2 text-2xl py-2">Asignar Streaming</p>
-      <p class="text-red-400 font-semibold mt-2 text-2xl py-2"> {{ Carbon\Carbon::parse($servicios->despacho)->format('d-m-y ') }}-{{ Carbon\Carbon::parse($servicios->hora)->format('H:i ') }}</td></p>
-      <div class="mb-4">
-        <lable for="nombre" class="block mb-2 text-gray-500 font-bold">Nombre</lable>
-        {{$servicios->nombre}} {{$servicios->apellido}}
-      </div>
-      <div class="mb-4">
-        <lable for="apellidos" class="block mb-2 text-gray-500 font-bold">Establecimiento</lable>
-        {{$servicios->parque->name}}
-      </div>
+      <div class="w-full p-4 border rounded-lg border-dashed py-5 border-3 ">
+      <div class="relative"> <p class="text-gray-400 font-semibold mt-2 text-2xl py-2">Asignar Streaming</p></div>
+    <ul>
+      <li class="flex justify-between items-center bg-white mt-2 p-2 hover:shadow-lg rounded cursor-pointer transition">
+        <div class="flex ml-2"> 
+            <div class="flex flex-col ml-2"> <span class="font-medium text-black">{{ $servicios->nombre }} {{ $servicios->apellido }}</span> <span class="text-sm text-gray-400 truncate w-40">Fecha: {{ Carbon\Carbon::parse($servicios->fecha)->format('d-m-y ') }}</span> </div>
+        </div>
+        <div class="flex flex-col items-center"><span class="text-gray-400">sector::</span></div>
+        <div class="flex flex-col items-center"> <span class="text-gray-300">{{ Carbon\Carbon::parse($servicios->hora)->format('h:i ') }}</span> <span class="text-gray-400">{{$servicios->parque->alias}}</span></div>
+    </li>
+    </ul>
+    </div>
       <div class="mb-3 md:space-y-2 w-full text-xs">
         <label class="font-semibold text-gray-600 py-2">Operador <abbr title="required">*</abbr></label>
         <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full " id="select-protect" name="operador">
@@ -44,4 +46,6 @@
         </ul>
     </div>
 @endif
+
+
 @endsection
