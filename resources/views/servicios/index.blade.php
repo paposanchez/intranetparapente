@@ -13,12 +13,18 @@
         </ul>
     </div>
 @endif  
-<div class="h-20 flex flex-wrap content-start">
-    <button class="bg-blue-600 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
-    <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
-    <button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500">Crear Servicio</button>
-
 </div>
+<div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+  <div class="sm:flex items-center justify-between">
+      <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Servicios</p>
+      @can('crear diacono') <div>
+        <a href="{{route('servicios.create')}}">
+          <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+              <p class="text-sm font-medium leading-none text-white">Crear Servicio</p>
+          </button></a>
+      </div>@endcan
+  </div>
+</div> 
   <table class="min-w-full table-auto">
     <thead class="justify-between">
       <tr class="bg-gray-800">
@@ -49,7 +55,7 @@
         
       <tr class="bg-white border-4 border-gray-200">
         <td class="px-16 py-2 flex flex-row items-center">
-             {{ Carbon\Carbon::parse($lista->fecha)->format('d-m') }}::{{ Carbon\Carbon::parse($lista->hora)->format('H:m') }}
+             {{ Carbon\Carbon::parse($lista->fecha)->format('d-m-Y') }}::{{ Carbon\Carbon::parse($lista->hora)->format('H:m') }}
         </td>
         <td>
           <span class="text-center ml-2 font-semibold">{{ $lista->nombre }} {{ $lista->apellido }}</span>
@@ -93,7 +99,15 @@
     </tbody>
     @endforeach
   </table>
+  <div class="px-4 py-4 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+    <div class="sm:flex items-center justify-between">
+        
+        {{ $servi->links() }}
+        </div>
+    </div>
 </div>
+
+</div> 
 @endsection
 
 @section('js')

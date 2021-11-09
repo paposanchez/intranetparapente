@@ -17,9 +17,12 @@ class ServiciosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $servi = Servicios::all();
+        
+        $servi = Servicios::orderBy('fecha','asc')
+        ->paginate(5);
+                    
         return view('servicios.index', compact('servi'));
     }
 

@@ -1,7 +1,6 @@
 
 @extends('layouts.paratheme.index')
 @section('title', 'Crear Servicio')
-
 @section('content')
 
 <div class="grid mt-8  gap-8 grid-cols-1">
@@ -13,23 +12,23 @@
 			</div>
       <div class="mt-5">
         <form method="POST" action="{{ route('servicios.store') }}" enctype="multipart/form-data">
-          @csrf
+          @csrf 
         <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Fecha <abbr title="required">*</abbr></label>
-            <input placeholder="Company Name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="date" name="fecha" id="integration_shop_name">
+            <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="date" name="fecha" value="<?php echo date("Y-m-d");?>">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Hora <abbr title="required">*</abbr></label>
-            <input placeholder="hora" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="time" name="hora" id="integration_shop_name">
+            <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="time" name="hora" id="integration_shop_name">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
         </div> 
         <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Nombre <abbr title="required">*</abbr></label>
-            <input placeholder="Company Name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="nombre"  value="{{old('nombre')}}">
+            <input placeholder="Nombre" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" name="nombre"  value="{{old('nombre')}}">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
@@ -39,7 +38,7 @@
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Fecha Nacimiento <abbr title="required">*</abbr></label>
-            <input placeholder="hora" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="date" name="fechanac"  value="{{old('fechanac')}}">
+            <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="date" name="fechanac"  value="{{old('fechanac')}}">
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
         </div>
@@ -56,7 +55,7 @@
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
             <label class="font-semibold text-gray-600 py-2">Sector <abbr title="required">*</abbr></label>
-            <select name="" id="_subcategoria"></select>
+            <select name="" id="_subcategoria" class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "></select>
             <p class="text-red text-xs hidden">Please fill out this field.</p>
           </div>
           <div class="mb-3 md:space-y-2 w-full text-xs">
@@ -126,8 +125,29 @@
     
             
 @endsection
-@section('js')
 
-<script src="../js/edit.js"></script>
+@section('scripts')
+<script>
+const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+  document.getElementById('_categoria').addEventListener('change',(e)=>{
+      fetch('../subcategorias',{
+          method : 'POST',
+          body: JSON.stringify({texto : e.target.value}),
+          headers:{
+              'Content-Type': 'application/json',
+              "X-CSRF-Token": csrfToken
+          }
+      }).then(response =>{
+          return response.json()
+      }).then( data =>{
+          var opciones ="<option value=''>Seleccione sector</option>";
+          for (let i in data.lista) {
+             opciones+= '<option value="'+data.lista[i].id+'">'+data.lista[i].sector+'</option>';
+          }
+          document.getElementById("_subcategoria").innerHTML = opciones;
+      }).catch(error =>console.error(error));
+  })
+</script>
+
+
 @endsection
-

@@ -14,26 +14,32 @@
 @endif
 
 <div class="md:px-40 py-5 w-full">
-  <div class="py-5 w-full">
-    @can('crear locales')
-  <button type="button" class="py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-    Crear Establecimiento
-  </button>@endcan</div>
+  <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+    <div class="sm:flex items-center justify-between">
+        <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Establecimiento</p>
+        @can('crear diacono') <div>
+          <a href="{{route('location.create')}}">
+            <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+                <p class="text-sm font-medium leading-none text-white">Crear Establecimiento</p>
+            </button></a>
+        </div>@endcan
+    </div>
+  </div>
     <div class="shadow overflow-hidden rounded border-b border-gray-200">
       <table class="min-w-full bg-white">
         <thead class="bg-gray-800 text-white">
           <tr>
-            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Nombre</th>
-            <th class="w-10 text-left py-3 px-4 uppercase font-semibold text-sm">Alias</th>
-            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Acciones</td>
+            <th class="w-4 text-center py-3 px-4 uppercase font-semibold text-sm">Nombre</th>
+            <th class="w-4 text-center py-3 px-4 uppercase font-semibold text-sm">Alias</th>
+            <th class="w-4 text-center py-3 px-4 uppercase font-semibold text-sm"></td>
           </tr>
         </thead>
       <tbody class="text-gray-700">
         @foreach ($locate as $cuerpo)
         <tr>
-          <td class="w-1/3 text-left py-3 px-4">{{ $cuerpo->name }}</td>
-          <td class="w-1/3 text-left py-3 px-4">{{ $cuerpo->alias }}</td>
-          <td class="w-1/3 text-left py-3 px-4">
+          <td class="w-4 text-center py-3 px-4">{{ $cuerpo->name }}</td>
+          <td class="w-4 text-center py-3 px-4">{{ $cuerpo->alias }}</td>
+          <td class="w-1/3 text-center py-3 px-4">
             <div class=" w-1/3 flex item-center justify-center">
                 <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 invisible">
                   @can('mostrar locales')
@@ -64,7 +70,7 @@
       </table>
     </div>
   </div>
-    
+  
 @endsection
 @push('scripts')
 @endpush

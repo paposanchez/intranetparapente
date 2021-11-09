@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/logintail');
 });
 
 Route::get('login2', function () {
     return view('auth/login2');
+});
+Route::get('login3', function () {
+    return view('auth/logintail');
 });
 
 Route::get('parque', function () {
@@ -29,15 +33,23 @@ Route::get('muestra', function () {
     return view('layouts/demo');
 });
 
-Auth::routes();
+
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('parque',            [App\Http\Controllers\VariosController::class,'getParque']);
+Route::get('/parque/sector/',       [App\Http\Controllers\VariosController::class,'getsector']);
+Route::post('/subcategorias',          [App\Http\Controllers\VariosController::class, 'subcategorias']);
+Route::get('/empresas/{$id}',          [App\Http\Controllers\VariosController::class, 'mapa']);
+Route::get('/pruebas',          [App\Http\Controllers\VariosController::class, 'index']);
 
 Route::get('location',            [App\Http\Controllers\LocationController::class,'index'])->name('location.index');
 Route::get('location/create',     [App\Http\Controllers\LocationController::class,'create'])->name('location.create');
 Route::post('location',           [App\Http\Controllers\LocationController::class,'store'])->name('location.store');
 Route::get('location/{id}/edit',  [App\Http\Controllers\LocationController::class,'edit'])->name('location.edit');
 Route::put('location/{id}',       [App\Http\Controllers\LocationController::class,'update'])->name('location.update');
+Route::Get('productByCategory/{id}', ['App\Http\Controllers\VariosController::class','byCategory']);
+Route::get('ciudad/select2', [App\Http\Controllers\VariosController::class,'buscarlocalicad'])->name('ciudad.select2');
 
 
 Route::get('employee',            [App\Http\Controllers\EmployeeController::class,'index'])->name('employee.index');
@@ -58,7 +70,12 @@ Route::put('servicio',            [App\Http\Controllers\ServiceController::class
 Route::get('porusuario',          [App\Http\Controllers\ServiceController::class,'porusuario'])->name('servicio.porusuario');
 Route::get('porusuario/{id}',     [App\Http\Controllers\ServiceController::class,'marcarsi'])->name('servicio.marcarsi');
 
-
+Route::get('Evento/form','ControllerEvent@form');
+Route::post('Evento/create','ControllerEvent@create');
+Route::get('Evento/details/{id}','ControllerEvent@details');
+Route::get('Evento/index', [App\Http\Controllers\ControllerEvent::class,'index'])->name('evento.index');
+Route::get('Evento/index/{month}','ControllerEvent@index_month');
+Route::post('Evento/calendario','ControllerEvent@calendario');
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -83,3 +100,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('diacono/{id}',               [App\Http\Controllers\DiaconosController::class,'update'])->name('diacono.update');
 
 });
+
