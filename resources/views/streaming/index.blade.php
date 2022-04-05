@@ -92,7 +92,7 @@
 
 
   <div class="flex justify-center py-4">
-    <button class="flex-grow px-4 py-1 text-sm font-medium bg-white border border-r-0 cursor-pointer focus:bg-gray-500 focus:outline-none">Hoy</button>
+    <button class="flex-grow px-4 py-1 text-sm font-medium bg-white border border-r-0 cursor-pointer focus:bg-gray-500 focus:outline-none"><a href="{{route('streaming.day')}}">Hoy</a></button>
     <button class="flex-grow px-4 py-1 text-sm font-medium bg-gray-300 border border-r-0 cursor-pointer focus:bg-gray-500 focus:outline-none">General</button>
     <button class="flex-grow px-4 py-1 text-sm font-medium bg-white border cursor-pointer focus:bg-gray-500 focus:outline-none">Por Usuario</button>
   </div>

@@ -9,6 +9,7 @@ use App\Models\Mapa;
 use App\Models\Servicios;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Carbon;
+Use Session;
 
 class ServiciosController extends Controller
 {
@@ -62,7 +63,9 @@ class ServiciosController extends Controller
         $servicio->diacono      = $request->diacono;
         $servicio->youtube      = $request->link;
         $servicio->estado      = "ingresado";
+        $servicio->sector          = $request->sector;
         $servicio->save();
+        Session::flash('message','Ingreso Exitoso');
         return redirect('servicios');
     }
 
@@ -110,10 +113,11 @@ class ServiciosController extends Controller
         $servicio->fonogestor    = $request->fonogestor;
         $servicio->correogestor  = $request->correogestor;
         $servicio->establecimiento = $request->parque;
-        $servicio->user_id       ="1";
-        $servicio->streaming    = $request->streaming;
-        $servicio->diacono      = $request->diacono;
-        $servicio->estado      = "ingresado";
+        $servicio->user_id         ="1";
+        $servicio->streaming       = $request->streaming;
+        $servicio->diacono         = $request->diacono;
+        $servicio->estado          = "ingresado";
+        $servicio->sector          = $request->sector;
         $servicio->save();
         return redirect('servicios');
 

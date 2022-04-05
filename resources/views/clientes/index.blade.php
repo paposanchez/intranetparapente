@@ -2,21 +2,25 @@
 @section('title', 'Servicios')
 
 @section('content')
-@if(Session::has('message'))
-<div class="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
-  <svg class="inline flex-shrink-0 mr-3 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-  <div>
-    <span class="font-medium"> alert!</span>{{Session::get('message')}}
-  </div>
+<div class="card">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif  
 </div>
-@endif
 <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
   <div class="sm:flex items-center justify-between">
       <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Servicios</p>
-      @can('crear diacono') <div>
-        <a href="{{route('servicios.create')}}">
+      @can('crear clientes') <div>
+        <a href="{{route('clientes.create')}}">
           <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-              <p class="text-sm font-medium leading-none text-white">Crear Servicio</p>
+              <p class="text-sm font-medium leading-none text-white">Crear Clientes</p>
           </button></a>
       </div>@endcan
   </div>
@@ -25,36 +29,28 @@
     <thead class="justify-between">
       <tr class="bg-gray-800">
         <th class="px-16 py-2">
-          <span class="text-gray-300">Fecha / Hora</span>
+          <span class="text-gray-300">Nombre</span>
         </th>
         <th class="px-30 py-2">
-            <span class="text-gray-300">Nombre DIfunto</span>
+            <span class="text-gray-300">Razon Social</span>
           </th>
         <th class="px-16 py-2">
-          <span class="text-gray-300">Perfil</span>
+          <span class="text-gray-300">Rut</span>
         </th>
-        <th class="px-16 py-2">
-          <span class="text-gray-300">Sector</span>
-        </th>
-
-        <th class="px-30 py-2">
-          <span class="text-gray-300">Deudo Gestor</span>
-        </th>
-
         <th class="px-16 py-2">
           <span class="text-gray-300">Acciones</span>
         </th>
       </tr>
     </thead>
-    @foreach ($servi as $lista)
+    @foreach ($cliente as $lista)
     <tbody class="bg-gray-200">
         
       <tr class="bg-white border-4 border-gray-200">
         <td class="px-16 py-2 flex flex-row items-center">
-             {{ Carbon\Carbon::parse($lista->fecha)->format('d-m-Y') }}::{{ Carbon\Carbon::parse($lista->hora)->format('H:m') }}
+             {{ $lista->nombre }}
         </td>
         <td>
-          <span class="text-center ml-2 font-semibold">{{ $lista->nombre }} {{ $lista->apellido }}</span>
+          <span class="text-center ml-2 font-semibold">{{ $lista->rut }}</span>
         </td>
         <td class="px-16 py-2">
           <a href="{{ route('servicios.show', $lista->id) }}"><button class="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-700 hover:border-indigo-500 hover:text-white ">
@@ -98,7 +94,7 @@
   <div class="px-4 py-4 bg-gray-100 rounded-tl-lg rounded-tr-lg">
     <div class="sm:flex items-center justify-between">
         
-        {{ $servi->links() }}
+        {{ $cliente->links() }}
         </div>
     </div>
 </div>

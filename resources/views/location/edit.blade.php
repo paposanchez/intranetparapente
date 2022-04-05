@@ -1,9 +1,8 @@
-
-@extends('adminlte::page')
+@extends('layouts.paratheme.index')
 @section('title', 'Crear Cuerpo')
 
 @section('content')
-<div class="col-md-6">
+<div class="bg-gray-100 mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24  mb-24">
 <div class="card card-primary">
     <div class="card-header">
       <h3 class="card-title">Crear Location</h3>

@@ -37,10 +37,8 @@ Route::get('muestra', function () {
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('parque',            [App\Http\Controllers\VariosController::class,'getParque']);
 Route::get('/parque/sector/',       [App\Http\Controllers\VariosController::class,'getsector']);
 Route::post('/subcategorias',          [App\Http\Controllers\VariosController::class, 'subcategorias']);
-Route::get('/empresas/{$id}',          [App\Http\Controllers\VariosController::class, 'mapa']);
 Route::get('/pruebas',          [App\Http\Controllers\VariosController::class, 'index']);
 
 Route::get('location',            [App\Http\Controllers\LocationController::class,'index'])->name('location.index');
@@ -58,17 +56,8 @@ Route::post('employee',           [App\Http\Controllers\EmployeeController::clas
 Route::get('employee/{id}/edit',  [App\Http\Controllers\EmployeeController::class,'edit'])->name('employee.edit');
 Route::put('employee/{id}',       [App\Http\Controllers\EmployeeController::class,'update'])->name('employee.update');
 
-
-Route::post('ingresar',            [App\Http\Controllers\IngresarController::class,'ingreso'])->name('employee.ingreso');
-Route::post('/sector',             [App\Http\Controllers\ServiciosController::class, 'sector2']);
-
-Route::get('servicio',            [App\Http\Controllers\ServiceController::class,'index'])->name('servicio.index');
-Route::get('servicio/create',     [App\Http\Controllers\ServiceController::class,'create'])->name('servicio.createc');
-Route::get('servicio/{id}',       [App\Http\Controllers\ServiceController::class,'edit'])->name('servicio.edit');
-Route::post('servicio',           [App\Http\Controllers\ServiceController::class,'store'])->name('servicio.store');
-Route::put('servicio',            [App\Http\Controllers\ServiceController::class,'update'])->name('servicio.update');
-Route::get('porusuario',          [App\Http\Controllers\ServiceController::class,'porusuario'])->name('servicio.porusuario');
-Route::get('porusuario/{id}',     [App\Http\Controllers\ServiceController::class,'marcarsi'])->name('servicio.marcarsi');
+Route::get('clientes',       [App\Http\Controllers\ClientesController::class,'index'])->name('clientes.index');
+Route::get('clientes/create',       [App\Http\Controllers\ClientesController::class,'create'])->name('clientes.create');
 
 Route::get('Evento/form','ControllerEvent@form');
 Route::post('Evento/create','ControllerEvent@create');

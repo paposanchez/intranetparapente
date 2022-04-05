@@ -27,7 +27,7 @@
               <div class="flex ml-2"> 
                   <div class="flex flex-col ml-2"> <span class="font-medium text-black">{{ $lista2->servicio->nombre }} {{ $lista2->servicio->apellido }}</span> <span class="text-sm text-gray-400 truncate w-40">Operador:{{$lista2->user->name}}</span> </div>
               </div>
-              <div class="flex flex-col items-center"><span class="text-gray-400">sector::</span></div>
+              <div class="flex flex-col items-center"><span class="text-gray-400">sector:: {{ $lista2->servicio->nombre }}</span></div>
               <div class="flex flex-col items-center"> <span class="text-gray-300">{{$lista2->servicio->hora}}</span> <span class="text-gray-400">{{$lista2->servicio->parque->alias}}</span></div>
           </li>
       </ul>
